@@ -65,18 +65,26 @@ function updateTime(city) {
 }
 
 function updateCity(event) {
+  //initialising the variables
   let citySelection = event.target.value;
   let cityName = citySelection;
+  let timeZoneInput = "";
+
   if (citySelection.length > 0) {
     //get correct timezones from moments libraries
-    let timeZoneInput = getTimeZone(citySelection);
+    if (citySelection === "current") {
+      timeZoneInput = moment.tz.guess();
+      cityName = timeZoneInput.replace("_", " ").split("/")[1];
+    } else {
+      timeZoneInput = getTimeZone(citySelection);
+    }
     let timeZone = moment().tz(`${timeZoneInput}`);
     let currentDate = timeZone.format("DD MMMM YYYY");
     let currentTime = timeZone.format("HH:mm:ss");
     let currentAnnotation = timeZone.format("A");
 
     //correct citySelection elements with dashes
-    if (citySelection.includes("-") === true) {
+    if (cityName.includes("-") === true) {
       cityName = citySelection.replace("-", " ");
     }
 
