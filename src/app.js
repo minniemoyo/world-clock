@@ -1,34 +1,68 @@
-function updateDate() {
-  let sydneyTz = "Australia/Sydney";
-  let parisTz = "Europe/Paris";
-  let torontoTz = "Canada/Central";
-  let losAngelesTz = "America/Los_Angeles";
+function getTimeZone(city) {
+  if (city == "sydney") {
+    let timeZone = "Australia/Sydney";
+    return timeZone;
+  }
 
-  //update sydney
-  //select element
-  let sydneyDateElement = document.querySelector("#sydneyDate");
-  let sydneyTimeElement = document.querySelector("#sydneyTime");
-  let syd_am_pm = document.querySelector("#sydneyAmPm");
-  let sydneyCurrentDate = moment().tz(`${sydneyTz}`).format("DD MMMM YYYY");
-  let sydneyCurrentTime = moment().tz(`${sydneyTz}`).format("hh:mm:ss");
-  let syd_current_am_pm = moment().tz(`${sydneyTz}`).format("A");
-  sydneyDateElement.innerHTML = sydneyCurrentDate;
-  sydneyTimeElement.innerHTML = sydneyCurrentTime;
-  syd_am_pm.innerHTML = syd_current_am_pm;
+  if (city == "melbourne") {
+    let timeZone = "Australia/Melbourne";
+    return timeZone;
+  }
 
-  //update LA
-  let laDate = document.querySelector("#laDate");
-  let laCurrentDate = moment().tz(`${losAngelesTz}`).format("DD MMMM YYYY");
-  laDate.innerHTML = laCurrentDate;
-  //update toronto
-  let torontoDate = document.querySelector("#torontoDate");
-  let torontoCurrentDate = moment().tz(`${torontoTz}`).format("DD MMMM YYYY");
-  torontoDate.innerHTML = torontoCurrentDate;
+  if (city == "new-york") {
+    let timeZone = "America/New_York";
+    return timeZone;
+  }
 
-  //update paris
-  let parisDate = document.querySelector("#parisDate");
-  let parisCurrentDate = moment().tz(`${parisTz}`).format("DD MMMM YYYY");
-  parisDate.innerHTML = torontoCurrentDate;
+  if (city == "bulawayo") {
+    let timeZone = "Africa/Harare";
+    return timeZone;
+  }
+  if (city == "bloemfontein") {
+    let timeZone = "Africa/Johannesburg";
+    return timeZone;
+  }
+
+  if (city == "los-angeles") {
+    let timeZone = "America/Los_Angeles";
+    return timeZone;
+  }
+
+  if (city == "toronto") {
+    let timeZone = "Canada/Central";
+    return timeZone;
+  }
+
+  if (city == "paris") {
+    let timeZone = "Europe/Paris";
+    return timeZone;
+  }
 }
 
-updateDate();
+function updateTime(city) {
+  //get time zone
+  let timeZoneInput = getTimeZone(city);
+  let timeZone = moment().tz(`${timeZoneInput}`);
+
+  //select elements on page
+  let dateElement = document.querySelector(`#${city} .date`);
+  let timeElement = document.querySelector(`#${city} .time .regionTime`);
+  let annotationElement = document.querySelector(
+    `#${city} .time .timeAnnotation`
+  );
+
+  //get correct timezones from moments libraries
+  let currentDate = timeZone.format("DD MMMM YYYY");
+  let currentTime = timeZone.format("HH:mm:ss");
+  let currentAnnotation = timeZone.format("A");
+
+  //update elements on page
+  dateElement.innerHTML = currentDate;
+  timeElement.innerHTML = currentTime;
+  annotationElement.innerHTML = currentAnnotation;
+}
+
+setInterval(updateTime, 1000, "sydney");
+setInterval(updateTime, 1000, "los-angeles");
+setInterval(updateTime, 1000, "toronto");
+setInterval(updateTime, 1000, "paris");
