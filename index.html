@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="src/styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.45/moment-timezone-with-data-1970-2030.min.js"></script>
     <title>World Clock</title>
   </head>
   <body>
@@ -16,33 +18,40 @@
         <option value="melbourne">Melbourne</option>
         <option value="new-york">New York</option>
       </select>
-      <div class="displayCity" id="displayCity">
+      <div class="displayCity" id="sydney">
         <div class="mainCity">
           <h2 class="cityName">Sydney 🇦🇺</h2>
-          <div class="date">22 March 2024</div>
+          <div class="date" id="sydneyDate"></div>
         </div>
-        <div class="time">15:56:15<span class="dayNight">AM</span></div>
+        <div class="time">
+          <span id="sydneyTime">15:56:15</span
+          ><span class="dayNight" id="sydneyAmPm">AM</span>
+        </div>
       </div>
-      <div class="displayCity" id="displayCity">
+      <div class="displayCity" id="los-angeles">
         <div class="mainCity">
-          <h2 class="cityName">Los Angeles 🇺🇸</h2>
-          <div class="date">22 March 2024</div>
+          <h2 class="cityName" id="laTime">Los Angeles 🇺🇸</h2>
+          <div class="date" id="laDate"></div>
         </div>
         <div class="time">15:56:15<span class="dayNight">AM</span></div>
       </div>
-      <div class="displayCity" id="displayCity">
+      <div class="displayCity" id="toronto">
         <div class="mainCity">
           <h2 class="cityName">Toronto 🇨🇦</h2>
-          <div class="date">22 March 2024</div>
+          <div class="date" id="torontoDate"></div>
         </div>
-        <div class="time">15:56:15<span class="dayNight">AM</span></div>
+        <div class="time" id="torontoTime">
+          15:56:15<span class="dayNight">AM</span>
+        </div>
       </div>
-      <div class="displayCity" id="displayCity">
+      <div class="displayCity" id="paris">
         <div class="mainCity">
           <h2 class="cityName">Paris 🇫🇷</h2>
-          <div class="date">22 March 2024</div>
+          <div class="date" id="parisDate"></div>
         </div>
-        <div class="time">15:56:15<span class="dayNight">AM</span></div>
+        <div class="time" id="#paristime">
+          15:56:15<span class="dayNight">AM</span>
+        </div>
       </div>
     </div>
     <footer>
