@@ -65,6 +65,11 @@ function updateTime(city) {
 }
 
 function updateCity(event) {
+  //clearing automated intervals for set timers on page
+  clearInterval(sydneyTimer);
+  clearInterval(laTimer);
+  clearInterval(torontoTimer);
+  clearInterval(parisTimer);
   //initialising the variables
   let citySelection = event.target.value;
   let cityName = citySelection;
@@ -96,15 +101,16 @@ function updateCity(event) {
         </div>
         <div class="time"><span class="regionTime">${currentTime}</span><span class="timeAnnotation">${currentAnnotation}</span>
         </div>
-        </div>`;
+        </div>
+        <a href="/"> Show All Cities </a> `;
   }
 }
 
 //setting up the automatic view for the user
-setInterval(updateTime, 1000, "sydney");
-setInterval(updateTime, 1000, "los-angeles");
-setInterval(updateTime, 1000, "toronto");
-setInterval(updateTime, 1000, "paris");
+let sydneyTimer = setInterval(updateTime, 1000, "sydney");
+let laTimer = setInterval(updateTime, 1000, "los-angeles");
+let torontoTimer = setInterval(updateTime, 1000, "toronto");
+let parisTimer = setInterval(updateTime, 1000, "paris");
 
 //updating the page when a user selects a city
 let cityElement = document.querySelector("#city");
